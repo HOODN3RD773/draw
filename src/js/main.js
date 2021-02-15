@@ -99,6 +99,8 @@ var draw = (function() {
         this.drawCircle();
       } else if( shape==='path' ) {
         this.drawPath();
+      } else if( shape==='triangle' ) {
+          this.drawTriangle();
       } else {
         alert('Please choose a shape');
       }
@@ -145,6 +147,17 @@ var draw = (function() {
       ctx.beginPath();
       ctx.arc(x1, y1, radius, 0, 2*Math.PI);
       ctx.stroke();
+      ctx.fill();
+    },
+
+    // Draw a triangle
+    drawTriangle: function () {
+      //using random fill colors
+      ctx.fillStyle = '#'+Math.floor(Math.random()*16777215).toString(16);
+      ctx.beginPath();
+      ctx.moveTo(75,50);
+      ctx.lineTo(100,75);
+      ctx.lineTo(100,25);
       ctx.fill();
     },
 
@@ -207,3 +220,8 @@ document.getElementById('btnCircle').addEventListener('click', function(){
 document.getElementById('btnPath').addEventListener('click', function(){
   draw.setShape('path');
 }, false);
+
+document.getElementById('btnTriangle').addEventListener('click', function(){
+  draw.setShape('triangle');
+}, false);
+
